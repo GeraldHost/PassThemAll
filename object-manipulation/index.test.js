@@ -1,4 +1,4 @@
-const { updatePeopleAgeFormat, countByName, people } = require('./index');
+const { updatePeopleAgeFormat, countByName, people, raw, addNewPeople } = require('./index');
 const originalPeople = require('./people');
 
 /**
@@ -38,4 +38,12 @@ test('Original Object hasn\'t been mutated', () => {
     for(let i = 0; i < people.length; i++){
         expect(people[i]).toMatchObject(originalPeople[i]);
     }
+});
+
+/**
+ * Add new people from raw data
+ */
+test('People array has 5 more items', () => {
+    let newPeople = addNewPeople(raw, people);
+    expect(newPeople.length).toBe(7);
 });

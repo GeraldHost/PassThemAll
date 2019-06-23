@@ -1,5 +1,5 @@
 const people = require('./people');
-
+const raw = require('./raw');
 /**
  * 1) Count people by name
  * 
@@ -12,7 +12,7 @@ const people = require('./people');
  *      NOT named in the supplied array
  */
 const countByName = (arr, people, inverse = false) => {
-    
+
 }
 
 /**
@@ -23,7 +23,19 @@ const countByName = (arr, people, inverse = false) => {
  * 2.1) Create a copy of the people object and change the ages that are type strings to ints
  */
 const updatePeopleAgeFormat = function (people) {
+
+}
+
+/**
+ * 3) Insert new items into array from raw data
+ * 
+ * @param {*} raw string
+ * @param {*} people array
+ * 
+ * 3.1) 
+ */
+const addNewPeople = function (raw, people) {
     
 }
 
-module.exports = { people, countByName, updatePeopleAgeFormat };
+module.exports = { people, raw, countByName, updatePeopleAgeFormat, addNewPeople };
