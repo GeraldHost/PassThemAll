@@ -1,52 +1,41 @@
 const { updatePeopleAgeFormat, countByName, people } = require('./index');
+const originalPeople = require('./people');
 
 /**
  * Name Counting
  */
-test('Counting by name', () => {
+test('The count of people named Jake or Theo is 2', () => {
     expect(countByName(['Jake', 'Theo'], people)).toBe(2);
 });
 
-test('Counting by name (case incesitive)', () => {
+test('Counting people by name is case incesitive', () => {
     expect(countByName(['jake', 'Theo'], people)).toBe(2);
 });
 
-test('Counting by name shouldn\'t mutate the original object', () => {
-    let originalPeople = people;
-    countByName(['jake', 'theo'], people);
-    people.forEach((person, idx) => {
-        expect(person).toMatchObject(originalPeople[idx]);
-    });
+test('The inverse count of people named Jake or Theo is 2', () => {
+    expect(countByName(['jake', 'Theo'], people, true)).toBe(1);
 });
 
 /**
  * Update People Age Format
  */
-test('Age properties have been changed from string to int', () => {
+test('Age properties should be int', () => {
     let newPeople = updatePeopleAgeFormat(people);
-    newPeople.forEach(person => {
-        expect(typeof person.details.age).toBe('number');
-    });
+    for(let i = 0; i < newPeople.length; i++){
+        expect(typeof newPeople[i].details.age).toBe('number');
+    }
 });
 
-test('Ages have only changed type and not value', () => {
+test('The dob function should return an instance of Date', () => {
     let newPeople = updatePeopleAgeFormat(people);
-    newPeople.forEach((person, idx) => {
-        expect(person.details.age).toBe(parseInt(people[idx].details.age));
-    });
-});
-
-test('Ages have only changed type and not value', () => {
-    let newPeople = updatePeopleAgeFormat(people);
-    newPeople.forEach((person, idx) => {
-        expect(person.details.dob instanceof Date).toBe(true);
-    });
+    for(let i = 0; i < newPeople.length; i++){
+        expect(newPeople[i].details.dob() instanceof Date).toBe(true);
+    }
 });
 
 test('Original Object hasn\'t been mutated', () => {
-    let originalPeople = people;
     updatePeopleAgeFormat(people);
-    people.forEach((person, idx) => {
-        expect(person).toMatchObject(originalPeople[idx]);
-    });
+    for(let i = 0; i < people.length; i++){
+        expect(people[i]).toMatchObject(originalPeople[i]);
+    }
 });
