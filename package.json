@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "jest": "^24.8.0"
+    "jest": "^24.8.0",
+    "jest-each": "^24.8.0"
   },
   "devDependencies": {},
   "scripts": {

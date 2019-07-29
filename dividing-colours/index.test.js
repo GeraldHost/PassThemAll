@@ -1,6 +1,7 @@
+const each = require('jest-each');
 const { colourDivider } = require('./index.js');
 
-each([
+test.each([
     [1, 'nope, not here'],
     [2, 'red'],
     [5, 'blue'],
@@ -17,6 +18,6 @@ each([
     [821, 'nope, not here'],
     [1021, 'nope, not here'],
     [92001421, 'nope, not here'],
-]).test('Passing %d should return %s', (num, expected) => {
+])('Passing %d should return %s', (num, expected) => {
     expect(colourDivider(num)).toBe(expected);
 });
